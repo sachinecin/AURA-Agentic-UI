@@ -6,7 +6,7 @@ Durable, Adversarial UI Orchestration for Level 5 Autonomous Systems
 ```mermaid
 graph TD
     A[User Intent] --> B[Generator Agent]
-    B --> C{Socratic Judge}
+    B --> C{  Judge}
     C -- Reject --> B
     C -- Approve --> D[Temporal.io State Lock]
     D --> E[A2UI Native Render]
