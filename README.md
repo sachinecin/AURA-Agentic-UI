@@ -44,7 +44,7 @@ The future of GenAI leadership is not in the model size, but in the durability a
 
 ## Images
 ![AURA Diagram](images/aura-diagram.png)
-![Architecture](images/architecture.png)
+
 ![AURA2](images/aura2.png)
 
 ## Launch Instructions
