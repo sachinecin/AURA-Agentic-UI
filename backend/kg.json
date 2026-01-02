@@ -1,0 +1,7 @@
+{
+  "nodes": [
+    {"id": "dashboard", "constraints": ["must have header", "no invalid actions"]},
+    {"id": "control", "constraints": ["must have buttons", "validate actions"]}
+  ],
+  "edges": []
+}

@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'aura-backend'
+    static_configs:
+      - targets: ['backend:3001', 'backend2:3001']
+    metrics_path: '/metrics'
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx:80']

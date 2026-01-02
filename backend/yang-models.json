@@ -1,0 +1,15 @@
+{
+  "interfaces": {
+    "type": "object",
+    "properties": {
+      "name": {"type": "string"},
+      "enabled": {"type": "boolean"}
+    }
+  },
+  "routing": {
+    "type": "object",
+    "properties": {
+      "protocol": {"enum": ["ospf", "bgp", "static"]}
+    }
+  }
+}

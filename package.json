@@ -1,0 +1,15 @@
+{
+  "name": "aura-agentic-ui",
+  "version": "1.0.0",
+  "description": "Durable, Adversarial UI Orchestration for Level 5 Autonomous Systems",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run start:backend & npm run start:frontend",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ../agents && npm install && cd ../temporal && npm install && cd ../mcp && npm install"
+  },
+  "keywords": ["aura", "agentic", "ui", "temporal", "mcp"],
+  "author": "",
+  "license": "ISC"
+}
