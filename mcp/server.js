@@ -2,6 +2,7 @@
 
 const { Server } = require('@modelcontextprotocol/sdk/server/index.js');
 const { StdioServerTransport } = require('@modelcontextprotocol/sdk/server/stdio.js');
+const { CallToolRequestSchema, ListToolsRequestSchema } = require('@modelcontextprotocol/sdk/types.js');
 
 class ComponentCatalogServer {
   constructor() {
@@ -17,7 +18,7 @@ class ComponentCatalogServer {
       }
     );
 
-    this.server.setRequestHandler('tools/list', async () => {
+    this.server.setRequestHandler(ListToolsRequestSchema, async () => {
       return {
         tools: [
           {
@@ -35,7 +36,7 @@ class ComponentCatalogServer {
       };
     });
 
-    this.server.setRequestHandler('tools/call', async (request) => {
+    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const { name, arguments: args } = request.params;
 
       if (name === 'get_component') {
@@ -63,5 +64,10 @@ class ComponentCatalogServer {
   }
 }
 
-const server = new ComponentCatalogServer();
-server.run().catch(console.error);
+// Only run if executed directly (not when required as a module)
+if (require.main === module) {
+  const server = new ComponentCatalogServer();
+  server.run().catch(console.error);
+}
+
+module.exports = ComponentCatalogServer;

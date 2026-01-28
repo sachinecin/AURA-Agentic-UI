@@ -1,13 +1,21 @@
 // Generator Agent: Drafts A2UI-compliant JSON blueprints
 
-const OpenAI = require('openai'); // Assume installed
+const OpenAI = require('openai');
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+let openai;
+
+function getOpenAIClient() {
+  if (!openai) {
+    openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  }
+  return openai;
+}
 
 async function generateBlueprint(userIntent, telemetry) {
+  const client = getOpenAIClient();
   const prompt = `Generate an A2UI-compliant JSON blueprint for the user intent: ${userIntent}. Telemetry: ${JSON.stringify(telemetry)}`;
 
-  const response = await openai.chat.completions.create({
+  const response = await client.chat.completions.create({
     model: 'gpt-4',
     messages: [{ role: 'user', content: prompt }],
   });
