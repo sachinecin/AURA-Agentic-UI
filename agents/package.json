@@ -1,0 +1,16 @@
+{
+  "name": "@aura/agents",
+  "version": "1.0.0",
+  "description": "Agentic components for AURA - Generator and Discriminator agents",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": ["agentic", "ai", "generator", "discriminator"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "openai": "^4.0.0",
+    "dotenv": "^16.0.0"
+  }
+}

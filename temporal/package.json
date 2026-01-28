@@ -1,0 +1,21 @@
+{
+  "name": "@aura/temporal-workflows",
+  "version": "1.0.0",
+  "description": "Temporal workflows for durable execution in AURA",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "worker": "node worker.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": ["temporal", "workflows", "durable-execution"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@temporalio/client": "^1.8.0",
+    "@temporalio/worker": "^1.8.0",
+    "@temporalio/workflow": "^1.8.0",
+    "@temporalio/activity": "^1.8.0",
+    "dotenv": "^16.0.0"
+  }
+}

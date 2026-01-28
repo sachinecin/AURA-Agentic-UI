@@ -1,0 +1,16 @@
+{
+  "name": "@aura/mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server for Trusted Component Catalog in AURA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": ["mcp", "model-context-protocol", "component-catalog"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.3"
+  }
+}
