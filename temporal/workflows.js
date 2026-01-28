@@ -3,7 +3,7 @@
 const { generateBlueprint } = require('../agents/generator');
 const { judgeBlueprint } = require('../agents/discriminator');
 
-export async function adversarialSynthesisWorkflow(userIntent, telemetry, yangModels, knowledgeGraph) {
+async function adversarialSynthesisWorkflow(userIntent, telemetry, yangModels, knowledgeGraph) {
   // Generator Agent drafts blueprint
   const blueprint = await generateBlueprint(userIntent, telemetry);
 
@@ -18,3 +18,5 @@ export async function adversarialSynthesisWorkflow(userIntent, telemetry, yangMo
   // Proceed to render
   return blueprint;
 }
+
+module.exports = { adversarialSynthesisWorkflow };
