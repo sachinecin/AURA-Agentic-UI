@@ -3,20 +3,34 @@
 const { generateBlueprint } = require('../agents/generator');
 const { judgeBlueprint } = require('../agents/discriminator');
 
-async function adversarialSynthesisWorkflow(userIntent, telemetry, yangModels, knowledgeGraph) {
-  // Generator Agent drafts blueprint
-  const blueprint = await generateBlueprint(userIntent, telemetry);
+async function adversarialSynthesisWorkflow(userIntent, telemetry, yangModels, knowledgeGraph, maxRetries = 3) {
+  let attempts = 0;
+  let lastRejectionReason = null;
 
-  // Discriminator Agent judges
-  const approved = await judgeBlueprint(blueprint, yangModels, knowledgeGraph);
+  while (attempts < maxRetries) {
+    attempts++;
+    
+    // Generator Agent drafts blueprint (with feedback from previous rejection)
+    const prompt = lastRejectionReason 
+      ? `${userIntent} (Previous attempt rejected: ${lastRejectionReason})`
+      : userIntent;
+    
+    const blueprint = await generateBlueprint(prompt, telemetry);
 
-  if (!approved) {
-    // Retry or handle rejection
-    return adversarialSynthesisWorkflow(userIntent, telemetry, yangModels, knowledgeGraph);
+    // Discriminator Agent judges
+    const approved = await judgeBlueprint(blueprint, yangModels, knowledgeGraph);
+
+    if (approved) {
+      // Success - return validated blueprint
+      return blueprint;
+    }
+
+    // Store rejection for next iteration
+    lastRejectionReason = `Blueprint validation failed on attempt ${attempts}`;
   }
 
-  // Proceed to render
-  return blueprint;
+  // Max retries exceeded
+  throw new Error(`Failed to generate valid blueprint after ${maxRetries} attempts`);
 }
 
 module.exports = { adversarialSynthesisWorkflow };
